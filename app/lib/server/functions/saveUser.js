@@ -172,6 +172,7 @@ export const saveUser = function(userId, userData) {
 		const createUser = {
 			username: userData.username,
 			password: userData.password,
+			address: userData.address,
 			joinDefaultChannels: userData.joinDefaultChannels,
 		};
 		if (userData.email) {
@@ -183,9 +184,12 @@ export const saveUser = function(userId, userData) {
 		const updateUser = {
 			$set: {
 				roles: userData.roles || ['user'],
+				address: userData.address,
 				settings: userData.settings || {},
 			},
 		};
+		console.log("update user");
+		console.log(updateUser);
 
 		if (typeof userData.name !== 'undefined') {
 			updateUser.$set.name = userData.name;
@@ -274,6 +278,9 @@ export const saveUser = function(userId, userData) {
 
 	if (userData.roles) {
 		updateUser.$set.roles = userData.roles;
+	}
+	if (userData.address) {
+		updateUser.$set.address = userData.address;
 	}
 	if (userData.settings) {
 		updateUser.$set.settings = { preferences: userData.settings.preferences };
