@@ -184,6 +184,7 @@ Template.userEdit.onCreated(function() {
 		userData.username = s.trim(this.$('#username').val());
 		userData.statusText = s.trim(this.$('#status').val());
 		userData.email = s.trim(this.$('#email').val());
+		userData.address = s.trim(this.$('#address').val());
 		userData.verified = this.$('#verified:checked').length > 0;
 		userData.password = s.trim(this.$('#password').val());
 		userData.requirePasswordChange = this.$('#changePassword:checked').length > 0;
@@ -211,6 +212,10 @@ Template.userEdit.onCreated(function() {
 		}
 		if (!userData.email) {
 			errors.push('Email');
+		}
+
+		if (!userData.address) {
+			errors.push('Address');
 		}
 
 		if (!userData.roles) {
